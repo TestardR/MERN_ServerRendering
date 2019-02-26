@@ -7044,9 +7044,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var app = (0, _express2.default)();
 
+app.use(_express2.default.static('public'));
 app.get('/', function (req, res) {
   var content = (0, _server.renderToString)(_react2.default.createElement(_Home2.default, null));
-  res.send(content);
+  var html = '\n  <!DOCTYPE html>\n    <html lang="en">\n      <head>\n          <meta charset="UTF-8">\n          <meta name="viewport" content="width=device-width, initial-scale=1.0">\n          <meta http-equiv="X-UA-Compatible" content="ie=edge">\n      </head>\n      <body>\n          <div id="root">' + content + '</div>\n          <script src="bundle.js"></script>\n      </body>\n    </html>\n  ';
+  res.send(html);
 });
 
 app.listen(3000, function () {
@@ -22452,7 +22454,18 @@ var Home = function Home() {
   return _react2.default.createElement(
     'div',
     null,
-    'I\'m the HOME component'
+    _react2.default.createElement(
+      'div',
+      null,
+      'I\'m the HOME component'
+    ),
+    _react2.default.createElement(
+      'button',
+      { onClick: function onClick() {
+          return console.log('Hi there!');
+        } },
+      'Click Me'
+    )
   );
 };
 
