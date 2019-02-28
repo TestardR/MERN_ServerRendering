@@ -115,6 +115,8 @@ var _express = __webpack_require__(5);
 
 var _express2 = _interopRequireDefault(_express);
 
+__webpack_require__(17);
+
 var _renderer = __webpack_require__(6);
 
 var _renderer2 = _interopRequireDefault(_renderer);
@@ -433,7 +435,7 @@ var UsersList = function (_Component) {
   _createClass(UsersList, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      // this.props.fetchUsers();
+      this.props.fetchUsers();
     }
   }, {
     key: 'rendersUsers',
@@ -470,6 +472,12 @@ function mapStateToProps(state) {
 }
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchUsers: _actions.fetchUsers })(UsersList);
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports) {
+
+module.exports = require("babel-polyfill");
 
 /***/ })
 /******/ ]);
