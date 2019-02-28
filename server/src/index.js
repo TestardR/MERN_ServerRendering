@@ -8,7 +8,7 @@ const app = express();
 app.use(express.static('public'));
 
 app.get('*', (req, res) => {
-  const store = createStore();
+  const store = createStore(req);
 
   // Some logic to initialize
   // and load data into the store
