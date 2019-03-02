@@ -12,10 +12,11 @@ app.use(express.static('public'));
 app.get('*', (req, res) => {
   const store = createStore(req);
 
-  // Match routes will return an array of routes
-  matchRoutes(Routes, req.path).map(({ route }) => {
+  // Match routes will return an array of promises representing all the action creators
+  const promises = matchRoutes(Routes, req.path).map(({ route }) => {
     return route.loadData ? route.loadData(store) : null;
   });
+  console.log(promises);
 
   res.send(renderer(req, store));
 });
