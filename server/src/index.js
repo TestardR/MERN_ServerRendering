@@ -14,7 +14,7 @@ app.get('*', (req, res) => {
 
   // Match routes will return an array of routes
   matchRoutes(Routes, req.path).map(({ route }) => {
-    return route.loadData ? route.loadData() : null;
+    return route.loadData ? route.loadData(store) : null;
   });
 
   res.send(renderer(req, store));
