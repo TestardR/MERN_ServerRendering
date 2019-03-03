@@ -413,7 +413,7 @@ exports.default = function (req, store) {
       )
     )
   ));
-  return '\n    <!DOCTYPE html>\n      <html lang="en">\n        <head>\n            <meta charset="UTF-8">\n            <meta name="viewport" content="width=device-width, initial-scale=1.0">\n            <meta http-equiv="X-UA-Compatible" content="ie=edge">\n        </head>\n        <body>\n            <div id="root">' + content + '</div>\n            <script src="bundle.js"></script>\n        </body>\n      </html>\n    ';
+  return '\n    <!DOCTYPE html>\n      <html lang="en">\n        <head>\n            <meta charset="UTF-8">\n            <meta name="viewport" content="width=device-width, initial-scale=1.0">\n            <meta http-equiv="X-UA-Compatible" content="ie=edge">\n        </head>\n        <body>\n            <div id="root">' + content + '</div>\n            <script>\n              window.INITIAL_STATE = ' + JSON.stringify(store.getState()) + '\n            </script>\n            <script src="bundle.js"></script>\n        </body>\n      </html>\n    ';
 };
 
 /***/ }),
