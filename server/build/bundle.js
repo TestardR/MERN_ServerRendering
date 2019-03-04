@@ -307,18 +307,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Home = function Home() {
   return _react2.default.createElement(
     'div',
-    null,
+    { className: 'center-align', style: { marginTop: '200px' } },
     _react2.default.createElement(
-      'div',
+      'h3',
       null,
-      'I\'m the HOME component'
+      'Welcome'
     ),
     _react2.default.createElement(
-      'button',
-      { onClick: function onClick() {
-          return console.log('Hi there!');
-        } },
-      'Click Me'
+      'p',
+      null,
+      'Check out this Server-Side Rendering Application'
     )
   );
 };
@@ -460,7 +458,7 @@ exports.default = function (req, store) {
       )
     )
   ));
-  return '\n    <!DOCTYPE html>\n      <html lang="en">\n        <head>\n            <meta charset="UTF-8">\n            <meta name="viewport" content="width=device-width, initial-scale=1.0">\n            <meta http-equiv="X-UA-Compatible" content="ie=edge">\n        </head>\n        <body>\n            <div id="root">' + content + '</div>\n            <script>\n              window.INITIAL_STATE = ' + (0, _serializeJavascript2.default)(store.getState()) + '\n            </script>\n            <script src="bundle.js"></script>\n        </body>\n      </html>\n    ';
+  return '\n    <!DOCTYPE html>\n      <html lang="en">\n        <head>\n            <!-- Compiled and minified CSS -->\n            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">\n            <!-- Compiled and minified JavaScript -->\n            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>\n            <meta charset="UTF-8">\n            <meta name="viewport" content="width=device-width, initial-scale=1.0">\n            <meta http-equiv="X-UA-Compatible" content="ie=edge">\n        </head>\n        <body>\n            <div id="root">' + content + '</div>\n            <script>\n              window.INITIAL_STATE = ' + (0, _serializeJavascript2.default)(store.getState()) + '\n            </script>\n            <script src="bundle.js"></script>\n        </body>\n      </html>\n    ';
 };
 
 /***/ }),
@@ -664,27 +662,45 @@ var Header = function Header(_ref) {
   );
 
   return _react2.default.createElement(
-    'div',
+    'nav',
     null,
     _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: '/' },
-      'React SSR'
-    ),
-    _react2.default.createElement(
       'div',
-      null,
+      { className: 'nav-wrapper' },
       _react2.default.createElement(
         _reactRouterDom.Link,
-        { to: '/users' },
-        'Users'
+        { to: '/', className: 'brand-logo' },
+        'React SSR'
       ),
       _react2.default.createElement(
-        _reactRouterDom.Link,
-        { to: '/admins' },
-        'Admins'
-      ),
-      authButton
+        'ul',
+        { className: 'right' },
+        _react2.default.createElement(
+          'li',
+          null,
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/users' },
+            'Users'
+          )
+        ),
+        _react2.default.createElement(
+          'li',
+          null,
+          ' ',
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/admins' },
+            'Admins'
+          )
+        ),
+        _react2.default.createElement(
+          'li',
+          null,
+          ' ',
+          authButton
+        )
+      )
     )
   );
 };
