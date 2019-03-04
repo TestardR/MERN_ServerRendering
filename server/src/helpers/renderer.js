@@ -4,6 +4,7 @@ import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import serialize from 'serialize-javascript';
+import { Helmet } from 'react-helmet';
 
 import Routes from '../client/Routes';
 
@@ -15,10 +16,15 @@ export default (req, store, context) => {
       </StaticRouter>
     </Provider>
   );
+
+  const helmet = Helmet.renderStatic();
+
   return `
     <!DOCTYPE html>
       <html lang="en">
         <head>
+          ${helmet.title.toString()}
+          ${helmet.meta.toString()}
             <!-- Compiled and minified CSS -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
             <!-- Compiled and minified JavaScript -->

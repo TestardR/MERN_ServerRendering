@@ -546,6 +546,8 @@ var _reactRedux = __webpack_require__(2);
 
 var _actions = __webpack_require__(1);
 
+var _reactHelmet = __webpack_require__(28);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -585,6 +587,16 @@ var UsersList = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
+        _react2.default.createElement(
+          _reactHelmet.Helmet,
+          null,
+          _react2.default.createElement(
+            'title',
+            null,
+            'User App'
+          ),
+          _react2.default.createElement('meta', { property: 'og:title', content: 'Users App' })
+        ),
         'Here\'s a big list of users:',
         _react2.default.createElement(
           'ul',
@@ -766,6 +778,8 @@ var _serializeJavascript = __webpack_require__(19);
 
 var _serializeJavascript2 = _interopRequireDefault(_serializeJavascript);
 
+var _reactHelmet = __webpack_require__(28);
+
 var _Routes = __webpack_require__(4);
 
 var _Routes2 = _interopRequireDefault(_Routes);
@@ -786,7 +800,10 @@ exports.default = function (req, store, context) {
       )
     )
   ));
-  return '\n    <!DOCTYPE html>\n      <html lang="en">\n        <head>\n            <!-- Compiled and minified CSS -->\n            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">\n            <!-- Compiled and minified JavaScript -->\n            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>\n            <meta charset="UTF-8">\n            <meta name="viewport" content="width=device-width, initial-scale=1.0">\n            <meta http-equiv="X-UA-Compatible" content="ie=edge">\n        </head>\n        <body>\n            <div id="root">' + content + '</div>\n            <script>\n              window.INITIAL_STATE = ' + (0, _serializeJavascript2.default)(store.getState()) + '\n            </script>\n            <script src="bundle.js"></script>\n        </body>\n      </html>\n    ';
+
+  var helmet = _reactHelmet.Helmet.renderStatic();
+
+  return '\n    <!DOCTYPE html>\n      <html lang="en">\n        <head>\n          ' + helmet.title.toString() + '\n          ' + helmet.meta.toString() + '\n            <!-- Compiled and minified CSS -->\n            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">\n            <!-- Compiled and minified JavaScript -->\n            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>\n            <meta charset="UTF-8">\n            <meta name="viewport" content="width=device-width, initial-scale=1.0">\n            <meta http-equiv="X-UA-Compatible" content="ie=edge">\n        </head>\n        <body>\n            <div id="root">' + content + '</div>\n            <script>\n              window.INITIAL_STATE = ' + (0, _serializeJavascript2.default)(store.getState()) + '\n            </script>\n            <script src="bundle.js"></script>\n        </body>\n      </html>\n    ';
 };
 
 /***/ }),
@@ -1026,6 +1043,12 @@ exports.default = function (ChildComponent) {
 
   return (0, _reactRedux.connect)(mapStateToProps)(RequireAuth);
 };
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-helmet");
 
 /***/ })
 /******/ ]);
